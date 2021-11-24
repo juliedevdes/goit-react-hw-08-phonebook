@@ -1,0 +1,26 @@
+.label {
+  margin-right: 30px;
+}
+
+.input {
+  margin-left: 25px;
+  border: 1.5px solid #303841;
+  background-color: aliceblue;
+  padding: 15px;
+  border-radius: 8px;
+  margin-left: 10px;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  padding: 0 25px;
+  height: 38px;
+  box-sizing: border-box;
+}
+
+.input::placeholder,
+.input::placeholder {
+  color: #3da4abbb;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
