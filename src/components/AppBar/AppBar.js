@@ -4,24 +4,38 @@ import UserMenu from "../UserMenu/UserMenu";
         Home
       </NavLink> */
 
+import { useSelector } from "react-redux";
+import { authSelectors } from "../../redux/auth";
+
 export default function AppBar() {
+  const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
   return (
     <div style={{ display: "flex", justifyContent: "center" }}>
       <NavLink style={{ margin: "10px" }} to="/">
         Home
       </NavLink>
-      <NavLink style={{ margin: "10px", marginRight: "150px" }} to="/contacts">
-        Contacts
-      </NavLink>
-      <NavLink style={{ margin: "10px" }} to="/register">
-        Register
-      </NavLink>
-      <NavLink style={{ margin: "10px", marginRight: "150px" }} to="/login">
-        Login
-      </NavLink>
-      <h2 style={{ margin: "10px" }}>
+
+      {isLoggedIn && (
+        <NavLink
+          style={{ margin: "10px", marginRight: "150px" }}
+          to="/contacts"
+        >
+          Contacts
+        </NavLink>
+      )}
+
+      {isLoggedIn ? (
         <UserMenu />
-      </h2>
+      ) : (
+        <div>
+          <NavLink style={{ margin: "10px" }} to="/register">
+            Register
+          </NavLink>
+          <NavLink style={{ margin: "10px", marginRight: "150px" }} to="/login">
+            Login
+          </NavLink>
+        </div>
+      )}
     </div>
   );
 }

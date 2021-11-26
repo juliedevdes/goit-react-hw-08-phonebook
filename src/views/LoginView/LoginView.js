@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import authOperations from "../../redux/auth/authOperations";
 
 export default function LoginView() {
-  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const dispatch = useDispatch();
@@ -11,8 +11,8 @@ export default function LoginView() {
   const handleInputChange = (e) => {
     const { name, value } = e.currentTarget;
     switch (name) {
-      case "name":
-        setName(value);
+      case "email":
+        setEmail(value);
         break;
       case "password":
         setPassword(value);
@@ -24,23 +24,23 @@ export default function LoginView() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(authOperations.logIn({ name, password }));
+    dispatch(authOperations.logIn({ email, password }));
     reset();
   };
 
   const reset = () => {
-    setName("");
+    setEmail("");
     setPassword("");
   };
   return (
     <form onSubmit={handleSubmit}>
       <label>
-        name:
+        email:
         <input
-          placeholder="Jane"
-          name="name"
+          placeholder="example@mail.com"
+          name="email"
           onChange={handleInputChange}
-          value={name}
+          value={email}
           type="text"
           required
         />
@@ -54,7 +54,7 @@ export default function LoginView() {
           required
         />
       </label>
-      <button type="submit">register</button>
+      <button type="submit">login</button>
     </form>
   );
 }

@@ -1,3 +1,13 @@
+import { useSelector } from "react-redux";
+import { authSelectors } from "../../redux/auth";
+
 export default function HomeView() {
-  return <h2>hello, it's home page. Register or login to use phonebook</h2>;
+  const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
+  return (
+    <h2>
+      {isLoggedIn
+        ? "Hello! You can use your phonebook now 😉"
+        : "Hello, it's home page. You need to register or login to use phonebook 🙈"}
+    </h2>
+  );
 }
