@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import authOperations from "../../redux/auth/authOperations";
+import { authOperations } from "../../redux/auth";
 
 export default function RegisterView() {
   const [name, setName] = useState("");
@@ -29,6 +29,7 @@ export default function RegisterView() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log({ name, email, password });
     dispatch(authOperations.register({ name, email, password }));
     reset();
   };
@@ -69,6 +70,7 @@ export default function RegisterView() {
           name="password"
           onChange={handleInputChange}
           value={password}
+          type="text"
           required
         />
       </label>

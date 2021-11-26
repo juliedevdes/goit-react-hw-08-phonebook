@@ -21,7 +21,7 @@ const contactsPersistConfig = {
 };
 
 const authPersistConfig = {
-  key: "contacts",
+  key: "auth",
   storage,
 };
 
