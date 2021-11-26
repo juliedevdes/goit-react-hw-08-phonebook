@@ -5,6 +5,7 @@ import HomeView from "./views/HomeView/HomeView";
 import RegisterView from "./views/RegisterView/RegisterView";
 import LoginView from "./views/LoginView/LoginView";
 import Loader from "./components/Loader/Loader";
+import AppBar from "./components/AppBar/AppBar";
 
 import s from "./App.module.css";
 import ContactsView from "./views/ContactsView/ContactsView";
@@ -12,6 +13,7 @@ import ContactsView from "./views/ContactsView/ContactsView";
 export default function App() {
   return (
     <div className={s.root}>
+      <AppBar />
       <Suspense fallback={<Loader />}>
         <Routes>
           <Route path="/" element={<HomeView />} />

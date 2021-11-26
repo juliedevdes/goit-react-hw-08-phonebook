@@ -13,8 +13,14 @@ import {
 import storage from "redux-persist/lib/storage";
 import { handleFilter } from "./actions";
 import contactsReducer from "./contacts/contactsReducer";
+import { authReducer } from "./auth";
 
 const contactsPersistConfig = {
+  key: "contacts",
+  storage,
+};
+
+const authPersistConfig = {
   key: "contacts",
   storage,
 };
@@ -25,10 +31,11 @@ const filterReducer = createReducer("", {
 
 const store = configureStore({
   reducer: {
+    auth: persistReducer(authPersistConfig, authReducer),
     filter: filterReducer,
     contacts: persistReducer(contactsPersistConfig, contactsReducer),
   },
-  devTools: process.env.NODE_ENV === "development",
+  //devTools: process.env.NODE_ENV === "development",
   middleware: getDefaultMiddleware({
     serializableCheck: {
       ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
