@@ -15,7 +15,7 @@ export default function AppBar() {
       <NavLink to="/">Home</NavLink>
       {isLoggedIn && (
         <NavLink className={s.contacts} to="/contacts">
-          Contacts
+          Phonebook
         </NavLink>
       )}
       {isLoggedIn ? <UserMenu /> : <AuthNav />}

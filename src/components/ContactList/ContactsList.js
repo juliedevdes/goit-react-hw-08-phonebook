@@ -1,7 +1,9 @@
 import ContasctsListItem from "../ContactsListItem/ContactsListItem";
 import s from "./ContactsList.module.css";
 
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { fetchContacts } from "../../redux/contacts/contactsOperations";
 
 function ContasctsList() {
   const getVisibleContacts = (contacts, filter) => {
@@ -14,11 +16,11 @@ function ContasctsList() {
     getVisibleContacts(state.contacts.entities, state.filter)
   );
 
-  //const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   dispatch(fetchContacts());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
 
   return (
     <ul className={s.list}>
