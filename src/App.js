@@ -10,6 +10,14 @@ import { useEffect } from "react";
 import AppBar from "./components/AppBar/AppBar";
 import Loader from "./components/Loader/Loader";
 
+import PrivateRoute from "./PrivateRoute";
+import PublicRoute from "./PublicRoute";
+
+// import HomeView from "./views/HomeView/HomeView";
+// import RegisterView from "./views/RegisterView/RegisterView";
+// import LoginView from "./views/LoginView/LoginView";
+// import ContactsView from "./views/ContactsView/ContactsView";
+
 const HomeView = lazy(() =>
   import("./views/HomeView/HomeView" /*webpackChunkName: "home-view"*/)
 );
@@ -39,11 +47,42 @@ export default function App() {
       <AppBar />
       <Suspense fallback={<Loader />}>
         <Routes>
-          <Route path="/" element={<HomeView />} />
-          <Route path="/register" element={<RegisterView />} />
-          <Route path="/login" element={<LoginView />} />
-          <Route path="/contacts" element={<ContactsView />} />
-          <Route element={<h1>Error</h1>} />
+          <Route
+            path="/"
+            element={
+              <PublicRoute path="/">
+                <HomeView />
+              </PublicRoute>
+            }
+          />
+
+          <Route
+            path="/register"
+            element={
+              <PublicRoute path="/register" restricted>
+                <RegisterView />
+              </PublicRoute>
+            }
+          />
+
+          <Route
+            path="/login"
+            element={
+              <PublicRoute path="/login" restricted>
+                <LoginView />
+              </PublicRoute>
+            }
+          />
+
+          <Route
+            path="/contacts"
+            element={
+              <PrivateRoute path="/contacts">
+                <ContactsView />
+              </PrivateRoute>
+            }
+          />
+          <Route path="*" element={<h1>Error</h1>} />
         </Routes>
       </Suspense>
     </div>
