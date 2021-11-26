@@ -18,11 +18,13 @@ import { authReducer } from "./auth";
 const contactsPersistConfig = {
   key: "contacts",
   storage,
+  whitelist: ["entities"],
 };
 
 const authPersistConfig = {
   key: "auth",
   storage,
+  whitelist: ["token"],
 };
 
 const filterReducer = createReducer("", {

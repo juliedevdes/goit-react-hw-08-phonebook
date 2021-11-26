@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import UserMenu from "../UserMenu/UserMenu";
+import AuthNav from "../AuthNav/AuthNav";
 /* <NavLink exact className={s.link} activeClassName={s.active} to="/">
         Home
       </NavLink> */
@@ -24,18 +25,7 @@ export default function AppBar() {
         </NavLink>
       )}
 
-      {isLoggedIn ? (
-        <UserMenu />
-      ) : (
-        <div>
-          <NavLink style={{ margin: "10px" }} to="/register">
-            Register
-          </NavLink>
-          <NavLink style={{ margin: "10px", marginRight: "150px" }} to="/login">
-            Login
-          </NavLink>
-        </div>
-      )}
+      {isLoggedIn ? <UserMenu /> : <AuthNav />}
     </div>
   );
 }
