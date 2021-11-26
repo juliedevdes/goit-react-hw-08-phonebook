@@ -13,7 +13,11 @@ export default function AppBar() {
   return (
     <div className={s.appbar}>
       <NavLink to="/">Home</NavLink>
-      {isLoggedIn && <NavLink to="/contacts">Contacts</NavLink>}
+      {isLoggedIn && (
+        <NavLink className={s.contacts} to="/contacts">
+          Contacts
+        </NavLink>
+      )}
       {isLoggedIn ? <UserMenu /> : <AuthNav />}
     </div>
   );
