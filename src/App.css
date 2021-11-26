@@ -1,0 +1,16 @@
+#root {
+  color: #303841;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  margin: 50px;
+}
+a {
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #000;
+}
+.active {
+  color: #2b9d9f;
+}

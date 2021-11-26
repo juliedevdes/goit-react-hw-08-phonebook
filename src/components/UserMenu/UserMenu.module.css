@@ -1,0 +1,31 @@
+.userMenu {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.btn {
+  align-items: center;
+  background-color: aliceblue;
+  border: 2px solid #303841;
+  border-radius: 8px;
+  box-sizing: border-box;
+  cursor: pointer;
+  font-size: 14px;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  height: 35px;
+  padding: 0px 25px;
+  transition: background-color 250ms linear;
+  margin-left: 20px;
+}
+
+.btn:active {
+  background-color: #3dd1e7;
+  outline: 0;
+}
+
+.btn:hover {
+  outline: 0;
+  background-color: #3dd1e7;
+}

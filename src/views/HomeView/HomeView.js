@@ -6,7 +6,7 @@ export default function HomeView() {
   return (
     <h2>
       {isLoggedIn
-        ? "Hello! You can use your phonebook now 😉"
+        ? "Hooray! You can use your phonebook now 😉"
         : "Hello, it's home page. You need to register or login to use phonebook 🙈"}
     </h2>
   );

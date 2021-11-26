@@ -1,7 +1,7 @@
 import { Suspense, lazy } from "react";
 import { Route, Routes } from "react-router-dom";
 
-import s from "./App.module.css";
+import "./App.css";
 
 import { authOperations } from "./redux/auth";
 import { useDispatch } from "react-redux";
@@ -12,11 +12,6 @@ import Loader from "./components/Loader/Loader";
 
 import PrivateRoute from "./PrivateRoute";
 import PublicRoute from "./PublicRoute";
-
-// import HomeView from "./views/HomeView/HomeView";
-// import RegisterView from "./views/RegisterView/RegisterView";
-// import LoginView from "./views/LoginView/LoginView";
-// import ContactsView from "./views/ContactsView/ContactsView";
 
 const HomeView = lazy(() =>
   import("./views/HomeView/HomeView" /*webpackChunkName: "home-view"*/)
@@ -43,7 +38,7 @@ export default function App() {
   }, [dispatch]);
 
   return (
-    <div className={s.root}>
+    <div>
       <AppBar />
       <Suspense fallback={<Loader />}>
         <Routes>
@@ -82,7 +77,8 @@ export default function App() {
               </PrivateRoute>
             }
           />
-          <Route path="*" element={<h1>Error</h1>} />
+
+          <Route path="*" element={<h1>Error! Missing page 🤭</h1>} />
         </Routes>
       </Suspense>
     </div>

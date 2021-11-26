@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { authOperations } from "../../redux/auth";
+import s from "./RegisterView.module.css";
 
 export default function RegisterView() {
   const [name, setName] = useState("");
@@ -8,7 +9,6 @@ export default function RegisterView() {
   const [password, setPassword] = useState("");
 
   const dispatch = useDispatch();
-  // const contacts = useSelector((store) => store.contacts.entities);
 
   const handleInputChange = (e) => {
     const { name, value } = e.currentTarget;
@@ -42,9 +42,10 @@ export default function RegisterView() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <label>
+      <label className={s.label} style={{ marginRight: "20px" }}>
         name:
         <input
+          className={s.input}
           placeholder="Jane"
           name="name"
           onChange={handleInputChange}
@@ -53,9 +54,10 @@ export default function RegisterView() {
           required
         />
       </label>
-      <label>
+      <label className={s.label} style={{ marginRight: "20px" }}>
         email:
         <input
+          className={s.input}
           placeholder="example@mail.com"
           name="email"
           onChange={handleInputChange}
@@ -64,9 +66,11 @@ export default function RegisterView() {
           required
         />
       </label>
-      <label>
+      <label className={s.label}>
         password:
         <input
+          className={s.input}
+          placeholder="*at least 8 symbols"
           name="password"
           onChange={handleInputChange}
           value={password}
@@ -74,7 +78,9 @@ export default function RegisterView() {
           required
         />
       </label>
-      <button type="submit">register</button>
+      <button className={s.btn} type="submit">
+        sign up
+      </button>
     </form>
   );
 }

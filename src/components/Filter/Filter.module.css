@@ -24,3 +24,9 @@
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
 }
+
+@media screen and (max-width: 900px) {
+  .input {
+    margin-top: 20px;
+  }
+}
