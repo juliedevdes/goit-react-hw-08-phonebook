@@ -2,6 +2,18 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 
 import axios from "axios";
 
+import "material-design-icons/iconfont/material-icons.css";
+import "@pnotify/core/dist/PNotify.css";
+import "@pnotify/core/dist/Material.css";
+import {
+  /*notice, info, error, */ alert,
+  success,
+  defaults,
+} from "@pnotify/core";
+
+defaults.styling = "material";
+defaults.icons = "material";
+
 axios.defaults.baseURL = "https://connections-api.herokuapp.com";
 
 const token = {
@@ -19,25 +31,61 @@ const register = createAsyncThunk(
     try {
       const { data } = await axios.post("/users/signup", credentials);
       token.set(data.token);
+      success({
+        text: "Sign up operation succeded",
+        type: "success",
+        delay: 300,
+      });
       return data;
     } catch (error) {
+      alert({
+        delay: 300,
+        type: "error",
+        text: error.message,
+        animation: "fade",
+      });
       return thunkAPI.rejectWithValue("error");
     }
   }
 );
 
-const logIn = createAsyncThunk("auth/login", async (credentials) => {
-  const { data } = await axios.post("/users/login", credentials);
-  token.set(data.token);
-  return data;
+const logIn = createAsyncThunk("auth/login", async (credentials, thunkAPI) => {
+  try {
+    const { data } = await axios.post("/users/login", credentials);
+    token.set(data.token);
+    success({
+      text: " Log in operation succeded",
+      type: "success",
+      delay: 300,
+    });
+    return data;
+  } catch (error) {
+    alert({
+      type: "error",
+      delay: 300,
+      text: error.message,
+      animation: "fade",
+    });
+    return thunkAPI.rejectWithValue();
+  }
 });
 
 const logOut = createAsyncThunk("auth/logout", async () => {
   try {
     await axios.post("/users/logout");
     token.unset();
+    return success({
+      text: " Log out operation succeded",
+      type: "success",
+      delay: 300,
+    });
   } catch (error) {
-    console.log(error);
+    return alert({
+      delay: 300,
+      type: "error",
+      text: error.message,
+      animation: "fade",
+    });
   }
 });
 
@@ -56,7 +104,12 @@ const fetchCurrentUser = createAsyncThunk(
       const { data } = await axios.get("/users/current");
       return data;
     } catch (error) {
-      console.log(error);
+      return alert({
+        delay: 300,
+        type: "error",
+        text: error.message,
+        animation: "fade",
+      });
     }
   }
 );
