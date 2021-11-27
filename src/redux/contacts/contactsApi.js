@@ -5,8 +5,11 @@ import "@pnotify/core/dist/PNotify.css";
 import "@pnotify/core/dist/Material.css";
 import { alert, defaults } from "@pnotify/core";
 
+//pnotify default settings
 defaults.styling = "material";
 defaults.icons = "material";
+defaults.delay = 1000;
+defaults.animation = "fade";
 
 axios.defaults.baseURL = "https://connections-api.herokuapp.com";
 
@@ -16,10 +19,9 @@ export async function fetchContacts() {
     return data;
   } catch (error) {
     return alert({
-      delay: 300,
       type: "error",
+      title: "Opps, you did something wrong!",
       text: error.message,
-      animation: "fade",
     });
   }
 }
@@ -30,10 +32,9 @@ export async function postContact({ name, number }) {
     return data;
   } catch (error) {
     return alert({
-      delay: 300,
       type: "error",
+      title: "Opps, you did something wrong!",
       text: error.message,
-      animation: "fade",
     });
   }
 }
@@ -44,10 +45,9 @@ export async function deleteContact(id) {
     return data;
   } catch (error) {
     return alert({
-      delay: 300,
       type: "error",
+      title: "Opps, you did something wrong!",
       text: error.message,
-      animation: "fade",
     });
   }
 }

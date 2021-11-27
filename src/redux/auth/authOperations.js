@@ -13,6 +13,8 @@ import {
 
 defaults.styling = "material";
 defaults.icons = "material";
+defaults.delay = 1000;
+defaults.animation = "fade";
 
 axios.defaults.baseURL = "https://connections-api.herokuapp.com";
 
@@ -32,17 +34,16 @@ const register = createAsyncThunk(
       const { data } = await axios.post("/users/signup", credentials);
       token.set(data.token);
       success({
-        text: "Sign up operation succeded",
+        title: "Thanks! Your account has been successfully created",
+        text: "Registration is completed",
         type: "success",
-        delay: 300,
       });
       return data;
     } catch (error) {
       alert({
-        delay: 300,
         type: "error",
+        title: "Opps, you did something wrong!",
         text: error.message,
-        animation: "fade",
       });
       return thunkAPI.rejectWithValue("error");
     }
@@ -54,17 +55,16 @@ const logIn = createAsyncThunk("auth/login", async (credentials, thunkAPI) => {
     const { data } = await axios.post("/users/login", credentials);
     token.set(data.token);
     success({
-      text: " Log in operation succeded",
+      title: "Login successful! ✨",
+      text: "You have successfully logged in",
       type: "success",
-      delay: 300,
     });
     return data;
   } catch (error) {
     alert({
       type: "error",
-      delay: 300,
+      title: "Opps, you did something wrong!",
       text: error.message,
-      animation: "fade",
     });
     return thunkAPI.rejectWithValue();
   }
@@ -75,16 +75,15 @@ const logOut = createAsyncThunk("auth/logout", async () => {
     await axios.post("/users/logout");
     token.unset();
     return success({
-      text: " Log out operation succeded",
+      title: "Logout successful",
+      text: "You have successfully logged out. See you next time!",
       type: "success",
-      delay: 300,
     });
   } catch (error) {
     return alert({
-      delay: 300,
       type: "error",
+      title: "Opps, you did something wrong!",
       text: error.message,
-      animation: "fade",
     });
   }
 });
@@ -105,10 +104,9 @@ const fetchCurrentUser = createAsyncThunk(
       return data;
     } catch (error) {
       return alert({
-        delay: 300,
         type: "error",
+        title: "Opps, you did something wrong!",
         text: error.message,
-        animation: "fade",
       });
     }
   }
